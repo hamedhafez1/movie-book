@@ -12,6 +12,11 @@
     align-items: center;
 }
 
+.main a {
+    color: #0070f3;
+    text-decoration: underline;
+}
+
 .footer {
     display: flex;
     flex: 1;
@@ -131,4 +136,10 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+}
+
+.movieImage {
+    /*padding:3px;*/
+    /*border-image: linear-gradient(45deg, #ff00b3 0%, #00f7ff 100%);*/
+    /*background: linear-gradient(to right, red, purple);*/
 }

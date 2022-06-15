@@ -5,7 +5,6 @@ import styles from "../../styles/Home.module.css";
 import Link from "next/link";
 
 export default function Movie({data = []}) {
-    console.log(data)
     if (data !== [])
         return <main className={styles.main}>
             <Link href="/"><a>Home</a></Link>

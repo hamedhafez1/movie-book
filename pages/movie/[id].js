@@ -2,13 +2,10 @@ import React from "react";
 import Image from "next/image";
 import axios from "axios";
 import styles from "../../styles/Home.module.css";
-import Link from "next/link";
 
 export default function Movie({data = []}) {
     if (data !== [])
         return <main className={styles.main}>
-            <Link href="/"><a>Home</a></Link>
-            <Link href="/movie"><a>Movies</a></Link>
             <div className={styles.movieImage}>
                 <Image loader={({src}) => (src)} src={data.image} alt={data.fullTitle}
                        width={176} height={265} unoptimized/>

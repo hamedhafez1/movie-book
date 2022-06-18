@@ -5,7 +5,7 @@ function Navbar(props) {
     return (
         <nav>
             <div className="logo">
-                <h1>MovieBook</h1>
+                <h1><Link href="/"><a>MovieBook</a></Link></h1>
             </div>
             <Link href="/"><a>Home</a></Link>
             <Link href="/about"><a>About</a></Link>

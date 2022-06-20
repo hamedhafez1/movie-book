@@ -12,7 +12,7 @@ export default function TopsMovies({data = []}) {
     }
 
     return (
-        <Layout>
+        <Layout title="MovieBook - Top 250 Movie">
             <div className={styles.moviesList}>
                 {
                     data.map((item) => {

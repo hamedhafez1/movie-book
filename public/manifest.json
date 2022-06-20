@@ -1,0 +1,13 @@
+{
+  "name": "MovieBook",
+  "short_name": "MovieBook",
+  "start_url": "/",
+  "scope": ".",
+  "display": "standalone",
+  "dir": "ltr",
+  "lang": "en",
+  "background_color": "#ffffff",
+  "theme_color": "#FFC107",
+  "orientation": "portrait-primary",
+  "gcm_sender_id": "_"
+}

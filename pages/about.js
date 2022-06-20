@@ -4,7 +4,7 @@ import Layout from "../components/Layout";
 
 function About(props) {
     return (
-        <Layout>
+        <Layout title="MovieBook - About us">
             <main className={styles.main}>
                 <h3>Developed by Roela Apps</h3>
             </main>

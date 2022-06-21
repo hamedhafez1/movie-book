@@ -6,15 +6,29 @@ import {useRouter} from "next/router";
 import NProgress from "nprogress";
 
 function Layout({title = "MovieBook", children}) {
+
     const router = useRouter()
+
     useEffect(() => {
-        router.events.on('routeChangeStart', url => {
-            // console.log(url)
+        const handleStart = (url) => {
+            console.log(`Loading: ${url}`)
             NProgress.start()
-        })
-        router.events.on('routeChangeComplete', () => NProgress.done())
-        router.events.on('routeChangeError', () => NProgress.done())
-    })
+        }
+        const handleStop = () => {
+            NProgress.done()
+        }
+
+        router.events.on('routeChangeStart', handleStart)
+        router.events.on('routeChangeComplete', handleStop)
+        router.events.on('routeChangeError', handleStop)
+
+        return () => {
+            router.events.off('routeChangeStart', handleStart)
+            router.events.off('routeChangeComplete', handleStop)
+            router.events.off('routeChangeError', handleStop)
+        }
+    }, [router])
+
     return (
         <React.Fragment>
             <Head>

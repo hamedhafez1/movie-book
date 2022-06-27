@@ -5,10 +5,14 @@ import Link from "next/link";
 import axios from "axios";
 import Layout from "../../components/Layout";
 
-export default function TopsMovies({data = []}) {
+export default function TopsMovies({data, errorMessage}) {
 
-    const myLoader = ({src, width, quality}) => {
+    const myLoader = ({src}) => {
         return src
+    }
+
+    if (errorMessage || !data) {
+        return <h4>{errorMessage || "an error occurred"}</h4>
     }
 
     return (
@@ -41,22 +45,26 @@ export default function TopsMovies({data = []}) {
     )
 }
 
-export function getServerSideProps(context) {
-
-    return axios.get("https://imdb-api.com/en/API/Top250Movies/k_4fjlegyk").then(result => {
-        return {
+export async function getStaticProps(context) {
+    return await axios.get(`https://imdb-api.com/en/API/Top250Movies/${process.env.IMDB_TOKEN}`).then(result => {
+        if (result.data.items.length === 250)
+            return {
+                props: {
+                    data: result.data.items
+                }
+            }
+        else return {
             props: {
-                data: result.data.items
+                data: null,
+                errorMessage: result.data.errorMessage
             }
         }
     }).catch(e => {
-        // console.error(e)
         return {
             props: {
-                data: []
+                data: null,
+                errorMessage: e.message
             }
         }
     })
-
-
 }

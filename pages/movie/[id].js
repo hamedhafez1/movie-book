@@ -1,12 +1,33 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Image from "next/image";
 import axios from "axios";
 import styles from "../../styles/Home.module.css";
 import Layout from "../../components/Layout";
+import {useRouter} from "next/router";
 
-export default function Movie({data = []}) {
-    if (data !== [])
-        return <Layout>
+export default function Movie(/*{data}*/) {
+    const [data, setData] = useState(null)
+    const router = useRouter()
+
+    useEffect(() => {
+        const getMovieData = () => {
+            axios.get(`https://imdb-api.com/en/API/Title/k_4fjlegyk/${router.query.id}`).then(result => {
+                if (result.data.title) {
+                    setData(result.data)
+                }
+            }).catch(e => {
+                console.error(e)
+                setData(null)
+            })
+        }
+        getMovieData()
+        return () => {
+            setData(null)
+        }
+    }, [router])
+
+    if (data)
+        return <Layout title={`MovieBook - ${data.fullTitle}`}>
             <main className={styles.main}>
                 <div className={styles.movieImage}>
                     <Image loader={({src}) => (src)} src={data.image} alt={data.fullTitle}
@@ -17,14 +38,15 @@ export default function Movie({data = []}) {
                 <p><b>Director:</b> {data.directors}</p>
                 {/*<h6>{data.releaseDate}</h6>*/}
                 <p>{data.plot}</p>
-                <div className={styles.moviesList}>
+                <div className={styles.moviesActorList}>
                     {data.actorList.map(actor => {
                         return <section className={styles.card} key={actor.id}>
                             <Image loader={({src}) => (src)} src={actor.image} key={actor.id} alt={actor.name}
-                                   width={128} height={176} unoptimized/>
-                            <h4>{actor.name}</h4>
-                            <label>as Character:</label>
-                            <section>{actor.asCharacter}</section>
+                                   width={81} height={108} unoptimized loading="lazy"/>
+                            <section>
+                                <h5>{actor.name}</h5>
+                                <span>as {actor.asCharacter}</span>
+                            </section>
                         </section>
                     })}
                 </div>
@@ -41,24 +63,15 @@ export default function Movie({data = []}) {
     else return <Layout>No Data</Layout>
 }
 
-export async function getServerSideProps(context) {
-    const result = await axios.get(`https://imdb-api.com/en/API/Title/k_4fjlegyk/${context.params.id}`)
-    return {
-        props: {
-            data: result.data || []
-        }
-    }
-}
-
-// export async function getStaticProps(context) {
-//     const id = context.params.id
-//     const res = await axios.get("https://imdb-api.com/en/API/Title/k_4fjlegyk/" + id)
-//     const data = res.data
+// export async function getServerSideProps(context) {
+//     const result = await axios.get(`https://imdb-api.com/en/API/Title/k_4fjlegyk/${context.params.id}`)
 //     return {
-//         props: {data: data}
+//         props: {
+//             data: result.data || undefined
+//         }
 //     }
 // }
-//
+
 // export async function getStaticPaths() {
 //     const res = await axios.get("https://imdb-api.com/en/API/Top250Movies/k_4fjlegyk");
 //     const data = res.data.items
@@ -69,7 +82,17 @@ export async function getServerSideProps(context) {
 //         }
 //     })
 //     return {
-//         paths, fallback: false
+//         paths,
+//         fallback: false
 //     }
 //
+// }
+//
+// export async function getStaticProps(context) {
+//     const id = context.params.id
+//     const res = await axios.get("https://imdb-api.com/en/API/Title/k_4fjlegyk/" + id)
+//     const data = res.data
+//     return {
+//         props: {data: data}
+//     }
 // }

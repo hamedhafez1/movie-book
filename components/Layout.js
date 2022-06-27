@@ -11,7 +11,7 @@ function Layout({title = "MovieBook", children}) {
 
     useEffect(() => {
         const handleStart = (url) => {
-            console.log(`Loading: ${url}`)
+            // console.log(`Loading: ${url}`)
             NProgress.start()
         }
         const handleStop = () => {

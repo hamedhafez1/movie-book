@@ -1,9 +1,13 @@
 import React from 'react';
 
-function Footer(props) {
+function Footer() {
     return (
         <footer>
-            Copyright {new Date().getFullYear()} Roela Apps
+            <small>
+                Copyright {new Date().getFullYear()}
+                {' '}
+                <a href="https://www.roela.ir" target="_blank" rel="noreferrer"><b>Roela Apps</b></a>
+            </small>
         </footer>
     );
 }

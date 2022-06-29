@@ -1,0 +1,53 @@
+.mainBanner {
+    cursor: pointer;
+    width: auto;
+    margin: 16px 0;
+    border-radius: 10px;
+}
+
+.mainBanner:hover {
+    box-shadow: 2px 2px 8px gray;
+}
+
+.mainBanner > div {
+    width: auto;
+    height: 96px;
+    padding: 4px;
+    border-radius: 10px;
+}
+
+.mainBanner .mainBannerMovies {
+    background: url("../public/background/bg_batman_dark_night.jpg");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.mainBanner .mainBannerTVs {
+    background: url("../public/background/bg_brbad.jpg");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color: #333333;
+}
+
+.mainBanner .mainBannerPopularMovies {
+    background: url("../public/background/bg_wolf_of_wallstreet.jpg");
+    background-size: cover;
+}
+
+.mainBanner .mainBannerPopularTVs {
+    background: url("../public/background/bg_got.jpg");
+    background-size: cover;
+}
+
+.title {
+    margin-left: 16px;
+    color: #eeeeeeee;
+}
+
+.mainBanner .mainBannerTVs .title {
+    color: #333333;
+}

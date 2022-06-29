@@ -5,23 +5,21 @@ import Link from "next/link";
 import axios from "axios";
 import Layout from "../../components/Layout";
 
-export default function TopsMovies({data, errorMessage}) {
 
-    const myLoader = ({src}) => {
-        return src
-    }
+export default function TopTVs({ data, errorMessage }) {
+    console.log(data)
 
     if (errorMessage || !data) {
         return <h4>{errorMessage || "an error occurred"}</h4>
     }
 
     return (
-        <Layout title="MovieBook - Top 250 Movie">
+        <Layout title="MovieBook - Top 250 Tvs">
             <div className={styles.moviesList}>
                 {
                     data.map((item) => {
                         return <Link
-                            href={"/movie/" + item.id
+                            href={"/tv/" + item.id
                                 // {
                                 // pathname: "/movie/[movie_id]",
                                 // pathname: "/movie/",
@@ -29,8 +27,7 @@ export default function TopsMovies({data, errorMessage}) {
                                 // }
                             } key={item.id}>
                             <section className={styles.card} key={item.id}>
-                                <Image loader={myLoader} src={item.image} width={128} height={176} unoptimized
-                                       alt={item.title}/>
+                                <Image src={item.image} width={128} height={176} unoptimized alt={item.title}/>
                                 <h3>{item.title}</h3>
                                 <b>crew:</b><p>{item.crew}</p>
                                 <b>imdb rate:</b><p>{item.imDbRating}</p>
@@ -46,8 +43,8 @@ export default function TopsMovies({data, errorMessage}) {
 }
 
 export async function getServerSideProps(context) {
-    return await axios.get(`https://imdb-api.com/en/API/Top250Movies/${process.env.IMDB_TOKEN}`).then(result => {
-        if (result.data.items.length === 250)
+    return await axios.get(`https://imdb-api.com/en/API/Top250TVs/k_4fjlegyk`).then(result => {
+        if (result.data.items.length > 1)
             return {
                 props: {
                     data: result.data.items

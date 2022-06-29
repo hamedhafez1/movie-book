@@ -1,33 +1,28 @@
-import React from "react";
-import Image from "next/image";
-import styles from "../../styles/Home.module.css";
-import Link from "next/link";
+import React from 'react';
 import axios from "axios";
-import Layout from "../../components/Layout";
+import Image from "next/image";
+import Layout from "../../../components/Layout";
+import styles from "../../../styles/Home.module.css";
+import Link from "next/link";
 
-export default function TopsMovies({data, errorMessage}) {
+function MostPopularTvs({data, errorMessage}) {
 
     const myLoader = ({src}) => {
         return src
     }
 
     if (errorMessage || !data) {
-        return <h4>{errorMessage || "an error occurred"}</h4>
+        return <Layout title="MovieBook - Most Popular Movie">
+            <h4>{errorMessage || "an error occurred"}</h4>
+        </Layout>
     }
 
     return (
-        <Layout title="MovieBook - Top 250 Movie">
+        <Layout title="MovieBook - Most Popular Movie">
             <div className={styles.moviesList}>
                 {
                     data.map((item) => {
-                        return <Link
-                            href={"/movie/" + item.id
-                                // {
-                                // pathname: "/movie/[movie_id]",
-                                // pathname: "/movie/",
-                                // query: {id: item.id}
-                                // }
-                            } key={item.id}>
+                        return <Link href={"/tv/" + item.id} key={item.id}>
                             <section className={styles.card} key={item.id}>
                                 <Image loader={myLoader} src={item.image} width={128} height={176} unoptimized
                                        alt={item.title}/>
@@ -42,12 +37,14 @@ export default function TopsMovies({data, errorMessage}) {
                 }
             </div>
         </Layout>
-    )
+    );
 }
 
+export default MostPopularTvs;
+
 export async function getServerSideProps(context) {
-    return await axios.get(`https://imdb-api.com/en/API/Top250Movies/${process.env.IMDB_TOKEN}`).then(result => {
-        if (result.data.items.length === 250)
+    return await axios.get(`https://imdb-api.com/en/API/MostPopularTVs/k_4fjlegyk`).then(result => {
+        if (result.data.items.length > 1)
             return {
                 props: {
                     data: result.data.items

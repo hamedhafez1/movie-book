@@ -40,13 +40,13 @@ function Layout({title = "MovieBook", children}) {
                 <link rel="icon" href="/favicon.ico"/>
                 <link rel="manifest" href="/manifest.json"/>
             </Head>
+            <Navbar/>
             <div className={styles.container}>
-                <Navbar/>
                 <main className={styles.main}>
                     {children}
                 </main>
-                <Footer/>
             </div>
+            <Footer/>
         </React.Fragment>
     );
 }

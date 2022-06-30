@@ -14,6 +14,11 @@
     height: 96px;
     padding: 4px;
     border-radius: 10px;
+    transition: /*width 2s,*/ height .20s;
+}
+
+.mainBanner > div:hover {
+    height: 176px;
 }
 
 .mainBanner .mainBannerMovies {

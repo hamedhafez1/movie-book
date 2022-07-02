@@ -28,6 +28,16 @@ footer {
     margin-top: 60px;
     color: #777;
     border-top: 1px solid #eaeaea;
+    font-size: .9rem;
+}
+
+footer a {
+    /*color: #0070f3;*/
+    text-decoration: underline;
+}
+
+footer a:hover {
+    color: #0070f3;
 }
 
 .not-found {

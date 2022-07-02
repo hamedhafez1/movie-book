@@ -4,7 +4,7 @@ function Footer() {
     return (
         <footer>
             <small>
-                Copyright {new Date().getFullYear()}
+                © {new Date().getFullYear()}
                 {' '}
                 <a href="https://www.roela.ir" target="_blank" rel="noreferrer"><b>Roela Apps</b></a>
             </small>

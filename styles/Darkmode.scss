@@ -1,0 +1,55 @@
+:root {
+  --background: hsl(0, 0%, 10%);
+  --text: #fff;
+  --highlight: #FFC107;
+}
+
+body {
+  background: var(--background);
+  transition: 0.5s background ease;
+}
+
+.theme-switch {
+  --background: #fff;
+  --text: #000;
+  color: var(--text);
+  width: 40px;
+  height: 24px;
+  background: var(--highlight);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  padding-left: 2px;
+
+  .switch {
+    background: white;
+    width: 16px;
+    height: 20px;
+    background: var(--background);
+    border-radius: 2px;
+    transition: .5s all ease;
+  }
+}
+
+.light-theme {
+  --background: #FFF;
+  --text: #000;
+  background: var(--background);
+
+  .theme-switch {
+    background: var(--text);
+
+    .switch {
+      background: var(--highlight);
+      transform: translateX(18px);
+    }
+  }
+
+  a {
+    color: var(--text);
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text);
+}

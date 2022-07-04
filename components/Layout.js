@@ -4,7 +4,6 @@ import Footer from "./Footer";
 import Head from "next/head";
 import {useRouter} from "next/router";
 import NProgress from "nprogress";
-import styles from '../styles/Home.module.css'
 
 function Layout({title = "MovieBook", children}) {
 
@@ -40,9 +39,9 @@ function Layout({title = "MovieBook", children}) {
                 <link rel="icon" href="/favicon.ico"/>
                 <link rel="manifest" href="/manifest.json"/>
             </Head>
-            <div className={styles.container}>
+            <div className="container">
                 <Navbar/>
-                <main className={styles.main}>
+                <main className="main">
                     {children}
                 </main>
                 <Footer/>

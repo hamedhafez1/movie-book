@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
 @import "Layout.css";
-@import "responsive-navbar.css";
+@import "Home.module.css";
+@import "Darkmode";
+@import "responsiveNavbar";
 
 * {
     box-sizing: border-box;
@@ -13,12 +15,31 @@ a {
 
 body {
     font-family: "Nunitio", sans-serif;
-    color: #333
 }
 
-.content {
-    max-width: 960px;
-    margin: 0 auto;
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media (min-width: 768px) {
+    .container {
+        width: 750px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        width: 970px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: 1170px;
+    }
 }
 
 footer {
@@ -32,8 +53,8 @@ footer {
 }
 
 footer a {
-    /*color: #0070f3;*/
     text-decoration: underline;
+    color: var(--highlight);
 }
 
 footer a:hover {
@@ -48,4 +69,3 @@ footer a:hover {
     text-decoration: underline;
     color: #0070f3;
 }
-

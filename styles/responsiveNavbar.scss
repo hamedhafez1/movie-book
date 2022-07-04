@@ -1,38 +1,38 @@
 .nav {
-    height: 50px;
-    width: 100%;
-    position: relative;
-    border-bottom: 1px solid #ddd;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    z-index: 10;
+  height: 50px;
+  width: 100%;
+  position: relative;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
 }
 
 .nav > .nav-header {
-    display: inline;
+  display: inline;
 }
 
 .nav > .nav-header > .nav-title {
-    display: inline-block;
-    padding: 10px 10px 10px 10px;
+  display: inline-block;
+  padding: 10px 10px 10px 10px;
 }
 
 .nav > .nav-btn {
-    display: none;
+  display: none;
 }
 
 .nav > .nav-links {
-    display: inline-flex;
-    align-items: center;
+  display: inline-flex;
+  align-items: center;
 }
 
 .nav > .nav-links > a {
-    display: inline-block;
-    padding: 13px 10px 13px 10px;
-    text-decoration: none;
-    position: relative;
-    color: var(--text);
+  display: inline-block;
+  padding: 13px 10px 13px 10px;
+  text-decoration: none;
+  position: relative;
+  color: var(--text);
 }
 
 /*@media screen and (min-width: 600px) {*/
@@ -55,69 +55,88 @@
 /*}*/
 
 .nav > .nav-links > a:hover {
-    background-color: rgba(0, 0, 0, 0.70);
-    color: #FFC107;
+  background-color: rgba(0, 0, 0, 0.70);
+  color: #FFC107;
 }
 
 .nav > #nav-check {
-    display: none;
+  display: none;
+}
+
+.nav > .nav-links > .dark-mode-control label {
+  display: none;
 }
 
 @media screen and (max-width: 600px) {
-    .nav > .nav-btn {
-        display: inline-block;
-        position: absolute;
-        right: 5%;
-        top: 15%;
-    }
+  .nav > .nav-btn {
+    display: inline-block;
+    position: absolute;
+    right: 5%;
+    top: 15%;
+  }
 
-    .nav > .nav-btn > label {
-        display: inline-block;
-        cursor: pointer;
-    }
+  .nav > .nav-btn > label {
+    display: inline-block;
+    cursor: pointer;
+  }
 
-    .nav > .nav-btn > label:hover, .nav #nav-check:checked ~ .nav-btn > label {
-        /*background-color: rgba(0, 0, 0, 0.3);*/
-    }
+  .nav > .nav-btn > label:hover, .nav #nav-check:checked ~ .nav-btn > label {
+    /*background-color: rgba(0, 0, 0, 0.3);*/
+  }
 
-    .nav > .nav-btn > label > span {
-        display: block;
-        width: 30px;
-        height: 3px;
-        background: #FFC107;
-        margin: 5px;
-        /*border-top: 2px solid #FFC107;*/
-    }
+  .nav > .nav-btn > label > span {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background: #FFC107;
+    margin: 5px;
+    /*border-top: 2px solid #FFC107;*/
+  }
 
-    .nav > .nav-links {
-        position: absolute;
-        display: block;
-        width: 100%;
-        background-color: #FFC107;
-        height: 0px;
-        transition: all 0.3s ease-in;
-        overflow-y: hidden;
-        top: 50px;
-        left: 0px;
-        z-index: 1000;
-        box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-    }
+  .nav > .nav-links {
+    position: absolute;
+    display: block;
+    width: 100%;
+    background-color: #FFC107;
+    height: 0px;
+    transition: all 0.3s ease-in;
+    overflow-y: hidden;
+    top: 50px;
+    left: 0px;
+    z-index: 1000;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  }
 
-    .nav > .nav-links > a {
-        display: block;
-    }
+  .nav > .nav-links > a {
+    display: block;
+  }
 
-    .nav > .nav-links > a:hover {
-        background-color: rgba(0, 0, 0, 0.80);
-    }
+  .nav > .nav-links > a:hover {
+    background-color: rgba(0, 0, 0, 0.80);
+  }
 
-    .nav > #nav-check:not(:checked) ~ .nav-links {
-        height: 0px;
-    }
+  .nav > #nav-check:not(:checked) ~ .nav-links {
+    height: 0px;
+  }
 
-    .nav > #nav-check:checked ~ .nav-links {
-        height: auto /*calc(100vh - 50px)*/;
-        overflow-y: auto;
-    }
+  .nav > #nav-check:checked ~ .nav-links {
+    height: auto;
+    overflow-y: auto;
+  }
+
+  .nav > .nav-links > .dark-mode-control {
+    padding-left: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+  }
+
+  .nav > .nav-links > .dark-mode-control label {
+    display: inline;
+  }
+
+  .nav > .nav-links > .dark-mode-control > .theme-switch {
+    margin: 8px;
+  }
 
 }

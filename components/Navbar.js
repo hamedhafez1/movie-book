@@ -33,8 +33,11 @@ function Navbar() {
                 <Link href="/movie"><a>Top Movies</a></Link>
                 <Link href="/tv"><a>Top Tvs</a></Link>
 
-                <div className="theme-switch" onClick={themeSwitch}>
-                    <span className="switch"/>
+                <div className="dark-mode-control">
+                    <label>Dark mode</label>
+                    <div className="theme-switch" onClick={themeSwitch}>
+                        <span className="switch"/>
+                    </div>
                 </div>
             </div>
         </nav>

@@ -51,6 +51,20 @@ body {
   }
 }
 
+@media screen and (max-width: 600px) {
+  .dark-mode-control {
+    label {
+      color: hsl(0, 0%, 10%);
+    }
+    .theme-switch {
+      background: var(--text);
+      .switch {
+        background: var(--highlight);
+      }
+    }
+  }
+}
+
 h1, h2, h3, h4, h5, h6 {
   color: var(--text);
 }

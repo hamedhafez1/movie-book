@@ -1,20 +1,19 @@
 import React from "react";
 import Image from "next/image";
-import styles from "../../styles/Home.module.css";
+import styles from "../../styles/Home.module.scss";
 import Link from "next/link";
 import axios from "axios";
 import Layout from "../../components/Layout";
 
 
 export default function TopTVs({ data, errorMessage }) {
-    console.log(data)
 
     if (errorMessage || !data) {
         return <h4>{errorMessage || "an error occurred"}</h4>
     }
 
     return (
-        <Layout title="MovieBook - Top 250 Tvs">
+        <Layout title="Top 250 Tvs - MovieBook">
             <div className={styles.moviesList}>
                 {
                     data.map((item) => {

@@ -1,14 +1,14 @@
 import React, {useEffect, useState} from "react";
 import Image from "next/image";
 import axios from "axios";
-import styles from "../../styles/Home.module.css";
+import styles from "../../styles/Home.module.scss";
 import Layout from "../../components/Layout";
 import {useRouter} from "next/router";
 
 export default function Tv({data}) {
 
     if (data)
-        return <Layout title={`MovieBook - ${data.fullTitle}`}>
+        return <Layout title={`${data.fullTitle} - MovieBook`}>
             <main className={styles.main}>
                 <div className={styles.movieImage}>
                     <Image loader={({src}) => (src)} src={data.image} alt={data.fullTitle}

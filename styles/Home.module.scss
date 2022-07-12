@@ -1,0 +1,83 @@
+.main {
+  min-height: 77vh;
+}
+
+.main a {
+  color: #0070f3;
+  text-decoration: underline;
+}
+
+.card {
+  margin: 0.5rem;
+  padding: 8px;
+  border: 1px solid #eaeaea;
+  border-radius: 8px;
+  width: 100%;
+  height: 115px;
+  cursor: pointer;
+  display: flex;
+}
+
+.card:hover,
+.card:focus,
+.card:active {
+  border-color: #FFC107;
+  box-shadow: 0 0 4px #FFC107;
+}
+
+.card b {
+  color: var(--text);
+}
+
+.card {
+  p {
+    margin: 0;
+    line-height: 1.5;
+    color: var(--text);
+  }
+
+  img {
+    border-radius: 4px;
+    display: block;
+    margin: auto;
+    min-width: 72px;
+    min-height: 96px;
+  }
+
+}
+
+.imgSection {
+  margin-right: 8px;
+}
+
+.card img:hover {
+  box-shadow: 2px 2px -4px gray;
+}
+
+.cardDesc {
+  h4 {
+    margin: 8px 0;
+  }
+
+  section {
+    margin-left: 4px;
+
+    p, span, b {
+      display: inline;
+      margin-left: 2px;
+      font-size: 14px;
+      color: var(--text);
+    }
+
+  }
+
+}
+
+.imdbRate {
+  //background: url("https://m.media-amazon.com/images/S/sash/7n0KRCHny73GkBG.png") no-repeat 0 -80px;
+}
+
+.moviesList {
+  display: flex;
+  flex-direction: column;
+}

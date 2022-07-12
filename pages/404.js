@@ -14,8 +14,8 @@ function NotFound() {
     }, [router])
 
     return (
-        <Layout title="MovieBook - 404 Error Page">
-            <div className="not-found">
+        <Layout title="404 Error Page - MovieBook">
+            <div className="content not-found">
                 <h1>😢</h1>
                 <h2>That Page cannot be found</h2>
                 <p>Go back the <Link href="/"><a>Homepage</a></Link></p>

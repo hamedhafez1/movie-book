@@ -2,7 +2,7 @@ import React from 'react';
 import axios from "axios";
 import Image from "next/image";
 import Layout from "../../../components/Layout";
-import styles from "../../../styles/Home.module.css";
+import styles from "../../../styles/Home.module.scss";
 import Link from "next/link";
 
 function MostPopularMovies({data, errorMessage}) {
@@ -12,13 +12,13 @@ function MostPopularMovies({data, errorMessage}) {
     }
 
     if (errorMessage || !data) {
-        return <Layout title="MovieBook - Most Popular Movie">
+        return <Layout title="Most Popular Movie - MovieBook">
             <h4>{errorMessage || "an error occurred"}</h4>
         </Layout>
     }
 
     return (
-        <Layout title="MovieBook - Most Popular Movie">
+        <Layout title="Most Popular Movies - MovieBook">
             <div className={styles.moviesList}>
                 {
                     data.map((item) => {

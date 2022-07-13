@@ -1,14 +1,12 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import Image from "next/image";
 import axios from "axios";
 import mainStyles from "../../styles/Home.module.scss";
 import styles from "../../styles/Movie.module.scss";
 import Layout from "../../components/Layout";
-import {useRouter} from "next/router";
 import Link from "next/link";
 
 export default function Tv({data}) {
-    console.log(data)
     if (data)
         return <Layout title={`${data.fullTitle} - MovieBook`}>
             <main className={mainStyles.main}>

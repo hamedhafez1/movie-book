@@ -4,7 +4,6 @@ import styles from "../styles/Home.module.scss";
 import Image from "next/image";
 
 export default function MovieCard({item, type = "movie"}) {
-    console.log(item)
     const myLoader = ({src}) => {
         return src
     }
@@ -18,7 +17,7 @@ export default function MovieCard({item, type = "movie"}) {
         } key={item.id}>
         <section className={styles.card} key={item.id}>
             <section className={styles.imgSection}>
-                <Image loader={myLoader} src={item.image} width={72} height={96} unoptimized
+                <Image loader={myLoader} src={item.image} width={105} height={140} unoptimized
                        alt={item.title}/>
             </section>
             <section className={styles.cardDesc}>

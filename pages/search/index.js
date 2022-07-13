@@ -1,6 +1,9 @@
 import React from 'react';
 import axios from "axios";
 import Layout from "../../components/Layout";
+import Link from "next/link";
+import styles from "../../styles/Home.module.scss";
+import Image from "next/image";
 
 export default function Search({data, errorMessage}) {
     if (errorMessage || !data) {
@@ -9,13 +12,30 @@ export default function Search({data, errorMessage}) {
     return (
         <Layout>
             <div className="content">
-                <ul>
+                <div className={styles.moviesList}>
                     {
                         data.results.map(item => {
-                            return <li key={item.id}>{item.title}</li>
+                            return <div key={item.id}>
+                                <Link href={`/movie/${item.id}`}>
+                                    <div className={styles.card}>
+                                        <div className={styles.imgSection}>
+                                            <Image loader={({src}) => (src)}
+                                                   src={item.image} width={105} height={140}
+                                                   unoptimized
+                                                   alt={item.title}/>
+                                        </div>
+                                        <div className={styles.cardDesc}>
+                                            <h4>{item.title}</h4>
+                                            <section>
+                                                <p>{item.description}</p>
+                                            </section>
+                                        </div>
+                                    </div>
+                                </Link>
+                            </div>
                         })
                     }
-                </ul>
+                </div>
             </div>
         </Layout>
     );

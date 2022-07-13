@@ -1,12 +1,11 @@
 import React from "react";
-import Image from "next/image";
 import styles from "../../styles/Home.module.scss";
-import Link from "next/link";
 import axios from "axios";
 import Layout from "../../components/Layout";
+import MovieCard from "../../components/MovieCard";
 
 
-export default function TopTVs({ data, errorMessage }) {
+export default function TopTVs({data, errorMessage}) {
 
     if (errorMessage || !data) {
         return <h4>{errorMessage || "an error occurred"}</h4>
@@ -17,23 +16,7 @@ export default function TopTVs({ data, errorMessage }) {
             <div className={styles.moviesList}>
                 {
                     data.map((item) => {
-                        return <Link
-                            href={"/tv/" + item.id
-                                // {
-                                // pathname: "/movie/[movie_id]",
-                                // pathname: "/movie/",
-                                // query: {id: item.id}
-                                // }
-                            } key={item.id}>
-                            <section className={styles.card} key={item.id}>
-                                <Image src={item.image} width={128} height={176} unoptimized alt={item.title}/>
-                                <h3>{item.title}</h3>
-                                <b>crew:</b><p>{item.crew}</p>
-                                <b>imdb rate:</b><p>{item.imDbRating}</p>
-                                <b>rank:</b><p>{item.rank}</p>
-                                <b>year:</b><p>{item.year}</p>
-                            </section>
-                        </Link>
+                        return <MovieCard item={item} type="tv" key={item.id}/>
                     })
                 }
             </div>

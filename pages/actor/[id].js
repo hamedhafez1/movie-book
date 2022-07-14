@@ -5,7 +5,7 @@ import styles from "../../styles/Home.module.scss"
 
 
 export default function Actor({data, errorMessage}) {
-    console.log(data)
+    // console.log(data)
     if (errorMessage || !data) {
         return <h4>{errorMessage || "an error occurred"}</h4>
     }
@@ -34,7 +34,6 @@ export default function Actor({data, errorMessage}) {
 }
 
 export async function getServerSideProps(context) {
-    console.log(context.query)
     return await axios.get(`https://imdb-api.com/en/API/Name/k_4fjlegyk/${context.query.id}`).then(result => {
         return {
             props: {

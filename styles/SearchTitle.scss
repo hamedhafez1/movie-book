@@ -26,10 +26,17 @@
     }
 
     button {
+      width: 36px;
+      height: 36px;
       background: transparent;
       border: none;
       color: var(--highlight);
       cursor: pointer;
+    }
+
+    button:hover {
+      background: #ddd;
+      border-radius: 50%;
     }
 
     input:focus {
@@ -45,7 +52,7 @@
   }
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 600px) {
   .search-title {
     .search-form {
       width: 100%;

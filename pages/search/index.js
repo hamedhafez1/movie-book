@@ -4,10 +4,15 @@ import Layout from "../../components/Layout";
 import Link from "next/link";
 import styles from "../../styles/Home.module.scss";
 import Image from "next/image";
+import {useRouter} from "next/router";
 
 export default function Search({data, errorMessage}) {
-    if (errorMessage || !data) {
-        return <h4>{errorMessage || "an error occurred"}</h4>
+    const router = useRouter()
+    if (errorMessage || !data || data.results.length < 1) {
+        setTimeout(() => router.replace("/"), 2000)
+        return <Layout>
+            <h4>{errorMessage || "an error occurred"}</h4>
+        </Layout>
     }
     return (
         <Layout>
@@ -43,20 +48,26 @@ export default function Search({data, errorMessage}) {
 
 
 export async function getServerSideProps(context) {
-    return await axios.get(`https://imdb-api.com/en/API/Search/k_4fjlegyk/${context.query.q}`).then(result => {
-        return {
-            props: {
-                data: result.data
+    if (context.query.q.length > 0) {
+        return await axios.get(`https://imdb-api.com/en/API/Search/k_4fjlegyk/${context.query.q}`).then(result => {
+            return {
+                props: {
+                    data: result.data
+                }
             }
-        }
-    }).catch(e => {
-        console.error(e.message)
-        return {
-            props: {
-                data: [],
-                errorMessage: e.message
+        }).catch(e => {
+            console.error(e.message)
+            return {
+                props: {
+                    data: [],
+                    errorMessage: e.message
+                }
             }
+        })
+    } else return {
+        props: {
+            data: [],
+            errorMessage: "no input for searching"
         }
-    })
-
+    }
 }

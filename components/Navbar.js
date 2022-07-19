@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from "next/link";
-import Image from "next/image";
 
 function Navbar() {
 
@@ -14,7 +13,7 @@ function Navbar() {
             <div className="nav-header">
                 <div className="nav-title">
                     <Link href="/">
-                        <a><Image src="/movie-book.png" alt="" width={96} height={32} unoptimized/></a>
+                        <a><h1 className="tracking-in-expand">MovieBook</h1></a>
                     </Link>
                 </div>
             </div>

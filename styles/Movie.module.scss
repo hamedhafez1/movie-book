@@ -6,35 +6,108 @@
   .movieBanner {
     .movieImage {
       img {
-        z-index: 2;
-        border-radius: 4px;
+        border-radius: 2px;
       }
     }
+  }
+
+  .actorName {
+    margin: 8px 0;
+  }
+
+  .yearParent {
+    margin: 0 0 16px;
   }
 
   .genres {
     width: fit-content;
     padding: 4px 8px;
     font-size: 14px;
-    margin: 8px 0;
     border: 0.1125rem #FFC107 solid;
-    border-radius: 16px;
+    border-radius: 2px;
+    margin-bottom: 8px;
   }
 
   .actorBirthDate {
+    border-left: 2px #FFC107 solid;
+    padding-left: 4px;
+    margin-bottom: 16px;
     font-size: 14px;
+  }
+
+  .actorSummary {
+    padding: 16px 0;
+    border-bottom: 1px var(--border-color) solid;
+    border-top: 1px var(--border-color) solid;
+  }
+
+  .actorAwards::before {
+    border-left: 2px #FFC107 solid;
+    padding-left: 4px;
+    content: "Awards: ";
+    font-weight: bold;
+  }
+
+  .actorAwards {
+    padding-bottom: 16px;
+    padding-top: 16px;
+    border-bottom: 1px var(--border-color) solid;
+    border-top: 1px var(--border-color) solid;
+  }
+
+  .actorKnownFor {
+    padding: 16px 0;
+
+    > span {
+      font-weight: bold;
+      border-left: 2px #FFC107 solid;
+      padding-left: 4px;
+      margin-bottom: 8px;
+    }
+  }
+
+  .castMoviesTable {
+    border-radius: 2px;
+    margin-top: 16px;
+    width: 100%;
+    border-collapse: collapse;
+
+    td, th {
+      font-size: small;
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:hover {
+      cursor: pointer;
+      color: var(--text-secondary-color);
+    }
+
+    tr:nth-child(even) {
+      background-color: var(--border-color);
+    }
+  }
+
+  .casts {
+    border-top: 1px var(--border-color) solid;
+    padding-top: 16px;
+
+    span {
+      font-weight: bold;
+      border-left: 2px #FFC107 solid;
+      padding-left: 4px;
+    }
   }
 
   .actorMovies {
     display: flex;
     justify-content: flex-start;
-    width: 100%;
-    flex-wrap: wrap;
-    overflow-x: scroll;
-    margin-bottom: 16px;
+    overflow-x: auto;
 
     .actorMoviesCardContent {
-      width: 148px;
+      min-width: 148px;
+      max-width: 148px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -42,12 +115,23 @@
       margin: 0.5rem;
       padding: 8px;
       border: 1px solid #eaeaea;
-      border-radius: 8px;
+      border-radius: 2px;
       cursor: pointer;
 
-      small {
-        width: 100%;
-        margin: 2px auto;
+      img {
+        border-radius: 2px;
+      }
+
+      .actorMoviesTitleParent {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .actorMoviesTitle, .actorMoviesRole {
+        font-size: 14px;
+        //margin: 2px auto;
       }
     }
 
@@ -58,23 +142,52 @@
 
   }
 
+  .actorMovies::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .actorMovies::-webkit-scrollbar-track {
+    background: var(--description);
+  }
+
+  .actorMovies::-webkit-scrollbar-thumb {
+    background: var(--highlight);
+  }
+
+  .actorMovies::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary-color);
+  }
+
 
   .genres:hover {
     cursor: pointer;
-    background: rgb(255, 255, 255, 0.32);
+    opacity: .8;
   }
 
   .director {
     font-size: 1rem;
-    margin: 8px 0;
+    margin-top: 8px;
     padding: 16px 0;
     border-bottom: 1px var(--border-color) solid;
     border-top: 1px var(--border-color) solid;
 
-    b {
+    span {
       border-left: 2px #FFC107 solid;
       padding-left: 4px;
     }
+  }
+
+  .releaseDate {
+    padding: 16px 0;
+    //padding: 16px 0;
+    border-bottom: 1px var(--border-color) solid;
+  }
+
+  .releaseDate::before {
+    content: "Release Date: ";
+    //font-weight: bold;
+    border-left: 2px #FFC107 solid;
+    padding-left: 4px;
   }
 
   .plot {
@@ -128,7 +241,7 @@
 
   .actorImageWrapper {
     .actorImage {
-      border-radius: 50%;
+      border-radius: 2px;
     }
 
     .actorImage:hover {
@@ -181,4 +294,8 @@
     //  text-transform: none;
     //}
   }
+}
+
+.imdbRate {
+  margin-right: 2px;
 }

@@ -21,10 +21,35 @@
     h1 {
       font-weight: bold;
       color: var(--highlight);
+      //animation: flow 5s ease-in-out infinite;
+      //background: linear-gradient(-60deg,var(--highlight),var(--text));
+      //background-clip: text;
+      //background-size: 300%;
+      //-webkit-background-clip: text;
+      //-webkit-text-fill-color: transparent;
+    }
+    @keyframes flow {
+      0%{
+        background-position: 0 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100%{
+        background-position: 0 50%;
+      }
     }
 
     h1:hover {
+      //color: var(--text);
+    }
+
+    .black-title {
       color: var(--text);
+    }
+
+    h1:hover .black-title {
+      color: var(--highlight);
     }
   }
 }
@@ -90,13 +115,13 @@
     display: block;
     width: 100%;
     background-color: #FFC107;
-    height: 0px;
+    height: 0;
     transition: all 0.3s ease-in;
     overflow-y: hidden;
     top: 50px;
-    left: 0px;
+    left: 0;
     z-index: 1000;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   }
 
   .nav > .nav-links > a {
@@ -109,7 +134,7 @@
   }
 
   .nav > #nav-check:not(:checked) ~ .nav-links {
-    height: 0px;
+    height: 0;
   }
 
   .nav > #nav-check:checked ~ .nav-links {

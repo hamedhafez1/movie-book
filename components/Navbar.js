@@ -13,7 +13,7 @@ function Navbar() {
             <div className="nav-header">
                 <div className="nav-title">
                     <Link href="/">
-                        <a><h1 className="tracking-in-expand">MovieBook</h1></a>
+                        <a><h1 className="tracking-in-expand">Movie<span className="black-title">Book</span></h1></a>
                     </Link>
                 </div>
             </div>

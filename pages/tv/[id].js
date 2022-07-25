@@ -7,6 +7,13 @@ import Layout from "../../components/Layout";
 import Link from "next/link";
 
 export default function Tv({data}) {
+    console.log(data)
+    const GetContentRating = (props) => {
+        if (!props.content) {
+            return <></>
+        }
+        return <span> . {props.children}{props.content}</span>
+    }
     if (data)
         return <Layout title={`${data.fullTitle} - MovieBook`}>
             <main className={mainStyles.main}>
@@ -14,14 +21,22 @@ export default function Tv({data}) {
                     <div className={styles.movieBanner}>
                         <div className={styles.movieImage}>
                             <Image loader={({src}) => (src)} src={data.image} alt={data.fullTitle}
-                                   width={176} height={265} unoptimized/>
+                                   width={200} height={300} unoptimized/>
+                            {/*width={199} height={265} unoptimized/>*/}
                         </div>
                     </div>
                     <h2>{data.title}</h2>
-                    <span className={styles.year}>{data.year} . {data.contentRating} . {data.runtimeStr}</span>
+                    <span className={styles.yearParent}>
+                        <span className={styles.year}>{data.year}</span>
+                        <GetContentRating content={data.contentRating}/>
+                        <GetContentRating content={data.runtimeStr}/>
+                        <GetContentRating content={data.imDbRating}>
+                            <span className={styles.imdbRate}>&#9733;</span>
+                        </GetContentRating>
+                    </span>
                     <span className={styles.genres}>{data.genres}</span>
-                    <span className={styles.director}><b>Director</b> {data.crew}</span>
-                    {/*<small>{data.releaseDate.toString().replaceAll("-", "/")}</small>*/}
+                    <span className={styles.director}><span>Creators: </span> {data.tvSeriesInfo.creators}</span>
+                    <span className={styles.releaseDate}>{data.releaseDate.toString().replaceAll("-", "/")}</span>
                     <p className={styles.plot}>{data.plot}</p>
                     <div className={styles.moviesActorList}>
                         {data.actorList.map(actor => {
@@ -32,7 +47,7 @@ export default function Tv({data}) {
                                                loader={({src}) => (src)}
                                                src={actor.image}
                                                alt={actor.name}
-                                               width={100} height={100} unoptimized loading="lazy"/>
+                                               width={75} height={100} unoptimized loading="lazy"/>
                                     </div>
                                 </Link>
                                 <div className={styles.actorNameBox}>

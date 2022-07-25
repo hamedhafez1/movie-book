@@ -7,7 +7,6 @@ import Layout from "../../components/Layout";
 import Link from "next/link";
 
 export default function Movie({data}) {
-    // console.log(data)
     // const [data, setData] = useState(null)
     // const router = useRouter()
     //
@@ -28,21 +27,34 @@ export default function Movie({data}) {
     //     }
     // }, [router])
 
+    const GetContentRating = ({content}) => {
+        if (!content) {
+            return <></>
+        }
+        return <span>. {content}</span>
+    }
+
     if (data)
         return <Layout title={`${data.fullTitle} - MovieBook`}>
             <main className={mainStyles.main}>
                 <div className={styles.movieParent}>
                     <div className={styles.movieBanner}>
                         <div className={styles.movieImage}>
+                            {/*<img src={data.image} alt=""/>*/}
                             <Image loader={({src}) => (src)} src={data.image} alt={data.fullTitle}
-                                   width={176} height={265} unoptimized/>
+                                   width={200} height={300} unoptimized/>
+                            {/*width={177} height={265} unoptimized/>*/}
                         </div>
                     </div>
                     <h2>{data.title}</h2>
-                    <span className={styles.year}>{data.year} . {data.contentRating} . {data.runtimeStr}</span>
+                    <span className={styles.yearParent}>
+                        <span className={styles.year}>{data.year}</span>
+                        <GetContentRating content={data.contentRating}/>
+                        <GetContentRating content={data.runtimeStr}/>
+                    </span>
                     <span className={styles.genres}>{data.genres}</span>
-                    <span className={styles.director}><b>Director</b> {data.directors}</span>
-                    {/*<small>{data.releaseDate.toString().replaceAll("-", "/")}</small>*/}
+                    <span className={styles.director}><span>Director: </span> {data.directors}</span>
+                    <span className={styles.releaseDate}>{data.releaseDate.toString().replaceAll("-", "/")}</span>
                     <p className={styles.plot}>{data.plot}</p>
                     <div className={styles.moviesActorList}>
                         {

@@ -17,7 +17,7 @@ function SearchTitle() {
         <>
             <div className="search-title">
                 <form action="/search" role="search" className="search-form" onSubmit={handleSubmit}>
-                    <input type="text" name="q" className="search-title-input" placeholder="Search IMDb"
+                    <input type="text" name="q" className="search-title-input" placeholder="Search IMDb (titles)"
                            autoCapitalize="off" autoCorrect="off" autoComplete="off"/>
                     <button type="submit">
                         <SearchIconSVG/>

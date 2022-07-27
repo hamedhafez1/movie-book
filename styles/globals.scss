@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap');
 @import "Layout.css";
 @import "Home.module";
 @import "Darkmode";
@@ -16,7 +16,7 @@ a {
 }
 
 body {
-  font-family: "Nunitio", sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
   color: var(--text);
 }
 
@@ -51,7 +51,7 @@ footer {
   padding: 30px 0;
   margin-top: 60px;
   color: #777;
-  border-top: 1px solid #eaeaea;
+  border-top: 1px solid #ddd;
   font-size: .9rem;
 }
 
@@ -82,12 +82,20 @@ footer a:hover {
 }
 
 .about-root {
-  padding-top: 36px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: 1px solid var(--highlight);
+  border-radius: 2px;
+  width: fit-content;
+  margin: 32px auto 0 auto;
+  padding: 32px;
 
-  .about-title:hover {
+  .about-title {
+    font-size: 36px;
+  }
+
+  .about-title:hover ,h2:hover {
     color: var(--highlight);
   }
 }

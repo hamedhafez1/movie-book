@@ -45,6 +45,35 @@ body {
   }
 }
 
+.scroll-up {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--highlight);
+  position: fixed;
+  bottom: 40px;
+  right: 25px;
+  z-index: 20;
+  color: #333333;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+  .arrow {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+  }
+
+  .up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+  }
+}
+
 footer {
   display: block;
   text-align: center;

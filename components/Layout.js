@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import Head from "next/head";
 import {useRouter} from "next/router";
 import NProgress from "nprogress";
+import ScrollUp from "./ScrollUp";
 
 function Layout({title = "MovieBook", children}) {
 
@@ -46,6 +47,7 @@ function Layout({title = "MovieBook", children}) {
                 </main>
                 <Footer/>
             </div>
+            <ScrollUp/>
         </React.Fragment>
     );
 }

@@ -32,7 +32,7 @@ function Navbar() {
                     <Link href="/"><a>Home</a></Link>
                     <Link href="/about"><a>About</a></Link>
                     <Link href="/movie"><a>Top Movies</a></Link>
-                    <Link href="/tv"><a>Top Tvs</a></Link>
+                    <Link href="/index"><a>Top Tvs</a></Link>
 
                     <div className="dark-mode-control">
                         <label>Dark mode</label>

@@ -3,9 +3,15 @@ import styles from "../../styles/Home.module.scss";
 import axios from "axios";
 import Layout from "../../components/Layout";
 import MovieCard from "../../components/MovieCard";
+import {MovieObject} from "../../components/MovieObject";
+import {GetServerSidePropsContext} from "next";
 
+type TopTVsProps = {
+    data: Array<MovieObject>,
+    errorMessage: string
+}
 
-export default function TopTVs({data, errorMessage}) {
+export default function TopTVs({data, errorMessage}: TopTVsProps) {
 
     if (errorMessage || !data) {
         return <h4>{errorMessage || "an error occurred"}</h4>
@@ -24,7 +30,7 @@ export default function TopTVs({data, errorMessage}) {
     )
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
     return await axios.get(`https://imdb-api.com/en/API/Top250TVs/k_4fjlegyk`).then(result => {
         if (result.data.items.length > 1)
             return {

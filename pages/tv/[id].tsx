@@ -5,15 +5,15 @@ import mainStyles from "../../styles/Home.module.scss";
 import styles from "../../styles/Movie.module.scss";
 import Layout from "../../components/Layout";
 import Link from "next/link";
+import {GetServerSidePropsContext} from "next";
+import {MovieObject} from "../../components/MovieObject";
 
-export default function Tv({data}) {
-    console.log(data)
-    const GetContentRating = (props) => {
-        if (!props.content) {
-            return <></>
-        }
-        return <span> . {props.children}{props.content}</span>
-    }
+type TVProps = {
+    data: MovieObject
+}
+
+export default function Tv({data}: TVProps) {
+
     if (data)
         return <Layout title={`${data.fullTitle} - MovieBook`}>
             <main className={mainStyles.main}>
@@ -22,7 +22,6 @@ export default function Tv({data}) {
                         <div className={styles.movieImage}>
                             <Image loader={({src}) => (src)} src={data.image} alt={data.fullTitle}
                                    width={200} height={300} unoptimized/>
-                            {/*width={199} height={265} unoptimized/>*/}
                         </div>
                     </div>
                     <h2>{data.title}</h2>
@@ -39,7 +38,7 @@ export default function Tv({data}) {
                     <span className={styles.releaseDate}>{data.releaseDate.toString().replaceAll("-", "/")}</span>
                     <p className={styles.plot}>{data.plot}</p>
                     <div className={styles.moviesActorList}>
-                        {data.actorList.map(actor => {
+                        {data.actorList.map((actor: any) => {
                             return <div className={styles.actorCard} key={actor.id}>
                                 <Link href={`/actor/${actor.id}`}>
                                     <div className={styles.actorImageWrapper}>
@@ -62,7 +61,7 @@ export default function Tv({data}) {
                     <div className={styles.similarMovies}>
                         <h3>More like this</h3>
                         <ul>
-                            {data.similars.map(item => {
+                            {data.similars.map((item: any) => {
                                 return <Link href={`/tv/${item.id}`} key={item.id}>
                                     <a>
                                         <li>{item.title}({item.imDbRating})</li>
@@ -75,11 +74,17 @@ export default function Tv({data}) {
             </main>
         </Layout>
     else return <Layout>No Data</Layout>
-
 }
 
-export async function getServerSideProps(context) {
-    const result = await axios.get(`https://imdb-api.com/en/API/Title/k_4fjlegyk/${context.params.id}`)
+const GetContentRating = (props: any) => {
+    if (!props.content) {
+        return <></>
+    }
+    return <span> . {props.children}{props.content}</span>
+}
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+    const result = await axios.get(`https://imdb-api.com/en/API/Title/k_4fjlegyk/${context.params?.id}`)
     return {
         props: {
             data: result.data || undefined

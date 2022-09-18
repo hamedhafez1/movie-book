@@ -1,22 +1,22 @@
-import React from 'react';
+import React, {FormEvent} from 'react';
 import {useRouter} from "next/router";
 
 function SearchTitle() {
 
     const router = useRouter()
 
-    function handleSubmit(e) {
+    function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault()
-        const inputValue = e.target.q.value.toString()
+        const inputValue = e.currentTarget.q.value.toString()
         if (inputValue.length > 0) {
             router.push(`search?q=${inputValue}`).catch(e => console.error(e))
         }
     }
 
     return (
-        <>
+        <React.Fragment>
             <div className="search-title">
-                <form action="/search" role="search" className="search-form" onSubmit={handleSubmit}>
+                <form action="/index.tsx" role="search" className="search-form" onSubmit={handleSubmit}>
                     <input type="text" name="q" className="search-title-input" placeholder="Search IMDb (titles)"
                            autoCapitalize="off" autoCorrect="off" autoComplete="off"/>
                     <button type="submit">
@@ -24,7 +24,7 @@ function SearchTitle() {
                     </button>
                 </form>
             </div>
-        </>
+        </React.Fragment>
     );
 }
 

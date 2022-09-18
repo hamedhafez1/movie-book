@@ -5,13 +5,32 @@ import Link from "next/link";
 import styles from "../../styles/Home.module.scss";
 import Image from "next/image";
 import {useRouter} from "next/router";
+import {GetServerSidePropsContext} from "next";
 
-export default function Search({data, errorMessage}) {
+type SearchItem = {
+    id: string,
+    title: string,
+    image: string,
+    description: string
+}
+
+type SearchProps = {
+    data: {
+        expression: string,
+        results: Array<SearchItem>,
+        errorMessage: string,
+        searchType: string
+    }
+}
+
+export default function Search({data}: SearchProps) {
+
     const router = useRouter()
-    if (errorMessage || !data || data.results.length < 1) {
+
+    if (data.errorMessage || !data || data.results.length < 1) {
         setTimeout(() => router.replace("/"), 2000)
         return <Layout>
-            <h4>{errorMessage || "an error occurred"}</h4>
+            <h4>{data.errorMessage || "an error occurred"}</h4>
         </Layout>
     }
     return (
@@ -19,7 +38,7 @@ export default function Search({data, errorMessage}) {
             <div className="content">
                 <div className={styles.moviesList}>
                     {
-                        data.results.map(item => {
+                        data.results.map((item: SearchItem) => {
                             return <div key={item.id}>
                                 <Link href={`/movie/${item.id}`}>
                                     <div className={styles.card}>
@@ -47,8 +66,8 @@ export default function Search({data, errorMessage}) {
 }
 
 
-export async function getServerSideProps(context) {
-    if (context.query.q.length > 0) {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+    if (context.query.q && context.query.q.length > 0) {
         return await axios.get(`https://imdb-api.com/en/API/Search/k_4fjlegyk/${context.query.q}`).then(result => {
             return {
                 props: {

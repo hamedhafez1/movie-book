@@ -3,17 +3,28 @@ import axios from "axios";
 import Layout from "../../../components/Layout";
 import styles from "../../../styles/Home.module.scss";
 import MovieCard from "../../../components/MovieCard";
+import {MovieObject} from "../../../components/MovieObject";
+import {GetServerSidePropsContext} from "next";
+import {useRouter} from "next/router";
 
-function MostPopularTvs({data, errorMessage}) {
+type MostPopularMoviesProps = {
+    data: Array<MovieObject>,
+    errorMessage: string
+}
+
+function MostPopularMovies({data, errorMessage}: MostPopularMoviesProps) {
+
+    const router = useRouter()
 
     if (errorMessage || !data) {
+        setTimeout(() => router.push("/"), 1500)
         return <Layout title="Most Popular Movie - MovieBook">
             <h4>{errorMessage || "an error occurred"}</h4>
         </Layout>
     }
 
     return (
-        <Layout title="Most Popular Movie - MovieBook">
+        <Layout title="Most Popular Movies - MovieBook">
             <div className={styles.moviesList}>
                 {
                     data.map((item) => {
@@ -25,10 +36,10 @@ function MostPopularTvs({data, errorMessage}) {
     );
 }
 
-export default MostPopularTvs;
+export default MostPopularMovies;
 
-export async function getServerSideProps(context) {
-    return await axios.get(`https://imdb-api.com/en/API/MostPopularTVs/k_4fjlegyk`).then(result => {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+    return await axios.get(`https://imdb-api.com/en/API/MostPopularMovies/k_4fjlegyk`).then(result => {
         if (result.data.items.length > 1)
             return {
                 props: {

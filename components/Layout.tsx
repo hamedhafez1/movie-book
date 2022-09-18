@@ -5,13 +5,19 @@ import Head from "next/head";
 import {useRouter} from "next/router";
 import NProgress from "nprogress";
 import ScrollUp from "./ScrollUp";
+import { type } from 'os';
 
-function Layout({title = "MovieBook", children}) {
+type LayoutProps = {
+    title?: string ,
+    children?: React.ReactNode
+}
+
+function Layout({title = "MovieBook", children} : LayoutProps) {
 
     const router = useRouter()
 
     useEffect(() => {
-        const handleStart = (url) => {
+        const handleStart = (url:string) => {
             // console.log(`Loading: ${url}`)
             NProgress.start()
         }

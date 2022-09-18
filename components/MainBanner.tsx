@@ -8,7 +8,12 @@ const MainItems = [
     {title: "Most Popular Movies", href: "/movie/popular", className: styles.mainBannerPopularMovies},
     {title: "Most Popular TVs", href: "/tv/popular", className: styles.mainBannerPopularTVs},
 ]
-export default function MainBanner({menuIndex = 0}) {
+
+interface MainBannerProps {
+    menuIndex: number
+}
+
+export default function MainBanner({menuIndex = 0} : MainBannerProps) {
 
     return (
         <div className={styles.mainBanner}>

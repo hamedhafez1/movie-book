@@ -4,10 +4,32 @@ import axios from "axios";
 import styles from "../../styles/Movie.module.scss"
 import Image from "next/image";
 import Link from "next/link";
+import {GetServerSidePropsContext} from "next";
+import {MovieObject} from "../../components/MovieObject";
+import {useRouter} from "next/router";
+
+interface ActorItem {
+    id: string,
+    name: string,
+    image: string,
+    role: string,
+    summary: string,
+    birthDate: string,
+    awards: string,
+    knownFor: MovieObject[],
+    castMovies: MovieObject[]
+}
+
+type ActorProps = {
+    data: ActorItem,
+    errorMessage: string
+}
 
 
-export default function Actor({data, errorMessage}) {
+export default function Actor({data, errorMessage}: ActorProps) {
+    const router = useRouter()
     if (errorMessage || !data) {
+        setTimeout(() => router.push("/"), 1500)
         return <h4>{errorMessage || "an error occurred"}</h4>
     }
     return (
@@ -71,18 +93,25 @@ export default function Actor({data, errorMessage}) {
     )
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
     return await axios.get(`https://imdb-api.com/en/API/Name/k_4fjlegyk/${context.query.id}`).then(result => {
-        return {
+        if (!result.data.errorMessage) {
+            return {
+                props: {
+                    data: result.data
+                }
+            }
+        } else return {
             props: {
-                data: result.data
+                data: null,
+                errorMessage: result.data.errorMessage
             }
         }
     }).catch(e => {
         console.error(e.message)
         return {
             props: {
-                data: [],
+                data: null,
                 errorMessage: e.message
             }
         }

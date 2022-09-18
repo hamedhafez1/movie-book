@@ -5,10 +5,23 @@ import mainStyles from "../../styles/Home.module.scss";
 import styles from "../../styles/Movie.module.scss";
 import Layout from "../../components/Layout";
 import Link from "next/link";
+import {GetServerSidePropsContext} from "next";
+import {MovieObject} from "../../components/MovieObject";
+import {useRouter} from "next/router";
 
-export default function Movie({data}) {
+type MovieProps = {
+    data: MovieObject,
+    errorMessage: string
+}
+
+export default function Movie({data, errorMessage}: MovieProps) {
+    const router = useRouter()
+    if (errorMessage || data.title!) {
+        setTimeout(() => router.push("/"), 1500)
+        return <h4>{errorMessage || "an error occurred"}</h4>
+    }
     // const [data, setData] = useState(null)
-    // const router = useRouter()
+    //
     //
     // useEffect(() => {
     //     const getMovieData = () => {
@@ -27,14 +40,7 @@ export default function Movie({data}) {
     //     }
     // }, [router])
 
-    const GetContentRating = ({content}) => {
-        if (!content) {
-            return <></>
-        }
-        return <span>. {content}</span>
-    }
-
-    if (data)
+    if (data) {
         return <Layout title={`${data.fullTitle} - MovieBook`}>
             <main className={mainStyles.main}>
                 <div className={styles.movieParent}>
@@ -58,7 +64,7 @@ export default function Movie({data}) {
                     <p className={styles.plot}>{data.plot}</p>
                     <div className={styles.moviesActorList}>
                         {
-                            data.actorList.map(actor => {
+                            data.actorList.map((actor: any) => {
                                 return <div className={styles.actorCard} key={actor.id}>
                                     <Link href={`/actor/${actor.id}`}>
                                         <div className={styles.actorImageWrapper}>
@@ -82,10 +88,10 @@ export default function Movie({data}) {
                     <div className={styles.similarMovies}>
                         <h3>More like this</h3>
                         <ul>
-                            {data.similars.map(item => {
-                                return <Link href={`/movie/${item.id}`} key={item.id}>
+                            {data.similars.map((movie: MovieObject) => {
+                                return <Link href={`/movie/${movie.id}`} key={movie.id}>
                                     <a>
-                                        <li>{item.title}({item.imDbRating})</li>
+                                        <li>{movie.title}({movie.imDbRating})</li>
                                     </a>
                                 </Link>
                             })}
@@ -94,16 +100,45 @@ export default function Movie({data}) {
                 </div>
             </main>
         </Layout>
-    else return <Layout><h1>No Data</h1></Layout>
+    } else {
+        return <Layout>
+            <h1>No Data!</h1>
+        </Layout>
+    }
 }
 
-export async function getServerSideProps(context) {
-    const result = await axios.get(`https://imdb-api.com/en/API/Title/k_4fjlegyk/${context.params.id}`)
-    return {
-        props: {
-            data: result.data || undefined
-        }
+const GetContentRating = (content: any) => {
+    if (!content) {
+        return <></>
     }
+    return <span>. {content}</span>
+}
+
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+    return await axios.get(`https://imdb-api.com/en/API/Title/k_4fjlegyk/${context.query.id}`).then(result => {
+        if (!result.data.errorMessage) {
+            return {
+                props: {
+                    data: result.data
+                }
+            }
+        } else return {
+            props: {
+                data: null,
+                errorMessage: result.data.errorMessage
+            }
+        }
+    }).catch(e => {
+        console.error(e.message)
+        return {
+            props: {
+                data: null,
+                errorMessage: e.message
+            }
+        }
+    })
+
 }
 
 // export async function getStaticPaths() {

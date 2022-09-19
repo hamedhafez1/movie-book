@@ -9,12 +9,11 @@ const MainItems = [
     {title: "Most Popular TVs", href: "/tv/popular", className: styles.mainBannerPopularTVs},
 ]
 
-interface MainBannerProps {
+type MainBannerProps = {
     menuIndex: number
 }
 
-export default function MainBanner({menuIndex = 0} : MainBannerProps) {
-
+export default function MainBanner({menuIndex = 0}: MainBannerProps) {
     return (
         <div className={styles.mainBanner}>
             <Link href={MainItems[menuIndex].href}>

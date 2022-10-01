@@ -16,7 +16,7 @@ type MovieProps = {
 
 export default function Movie({data, errorMessage}: MovieProps) {
     const router = useRouter()
-    if (errorMessage || data.title!) {
+    if (errorMessage || !data) {
         setTimeout(() => router.push("/"), 1500)
         return <h4>{errorMessage || "an error occurred"}</h4>
     }
@@ -107,7 +107,7 @@ export default function Movie({data, errorMessage}: MovieProps) {
     }
 }
 
-const GetContentRating = (content: any) => {
+const GetContentRating = ({content}: any) => {
     if (!content) {
         return <></>
     }

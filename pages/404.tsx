@@ -1,17 +1,8 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import Link from "next/link";
-import {useRouter} from "next/router";
 import Layout from "../components/Layout";
 
 function NotFound() {
-    const router = useRouter()
-    useEffect(() => {
-        setTimeout(() => {
-            router.push("/").catch(e => {
-                console.log(e)
-            });
-        }, 3000)
-    }, [router])
 
     return (
         <Layout title="404 Error Page - MovieBook">

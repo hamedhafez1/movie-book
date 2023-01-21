@@ -61,7 +61,7 @@ export default function Tv({data}: TVProps) {
                     <div className={styles.similarMovies}>
                         <h3>More like this</h3>
                         <ul>
-                            {data.similars.map((item: any) => {
+                            {data.similar.map((item: any) => {
                                 return <Link href={`/tv/${item.id}`} key={item.id}>
                                     <a>
                                         <li>{item.title}({item.imDbRating})</li>

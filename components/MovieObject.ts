@@ -14,7 +14,7 @@ export type MovieObject ={
     releaseDate: string,
     plot: string,
     actorList: any,
-    similars: any,
+    similar: any,
     //tv
     tvSeriesInfo: {
         creators: string

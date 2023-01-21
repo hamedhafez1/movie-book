@@ -88,7 +88,7 @@ export default function Movie({data, errorMessage}: MovieProps) {
                     <div className={styles.similarMovies}>
                         <h3>More like this</h3>
                         <ul>
-                            {data.similars.map((movie: MovieObject) => {
+                            {data.similar.map((movie: MovieObject) => {
                                 return <Link href={`/movie/${movie.id}`} key={movie.id}>
                                     <a>
                                         <li>{movie.title}({movie.imDbRating})</li>

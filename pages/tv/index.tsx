@@ -21,7 +21,7 @@ export default function TopTVs({data, errorMessage}: TopTVsProps) {
         <Layout title="Top 250 Tvs - MovieBook">
             <div className={styles.moviesList}>
                 {
-                    data.map((item) => {
+                    data && data.map((item) => {
                         return <MovieCard item={item} type="tv" key={item.id}/>
                     })
                 }

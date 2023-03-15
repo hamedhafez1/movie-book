@@ -38,7 +38,7 @@ export default function Tv({data}: TVProps) {
                     <span className={styles.releaseDate}>{data.releaseDate.toString().replaceAll("-", "/")}</span>
                     <p className={styles.plot}>{data.plot}</p>
                     <div className={styles.moviesActorList}>
-                        {data.actorList.map((actor: any) => {
+                        {data.actorList && data.actorList.map((actor: any) => {
                             return <div className={styles.actorCard} key={actor.id}>
                                 <Link href={`/actor/${actor.id}`}>
                                     <div className={styles.actorImageWrapper}>
@@ -61,7 +61,7 @@ export default function Tv({data}: TVProps) {
                     <div className={styles.similarMovies}>
                         <h3>More like this</h3>
                         <ul>
-                            {data.similar.map((item: any) => {
+                            {data.similar && data.similar.map((item: any) => {
                                 return <Link href={`/tv/${item.id}`} key={item.id}>
                                     <a>
                                         <li>{item.title}({item.imDbRating})</li>

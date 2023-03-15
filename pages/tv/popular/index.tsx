@@ -23,7 +23,7 @@ function MostPopularTvs({data, errorMessage}: MostPopularTvsProps) {
         <Layout title="Most Popular Movie - MovieBook">
             <div className={styles.moviesList}>
                 {
-                    data.map((item) => {
+                    data && data.map((item) => {
                         return <MovieCard item={item} type="tv" key={item.id}/>
                     })
                 }

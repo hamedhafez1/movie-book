@@ -50,17 +50,19 @@ export default function Actor({data, errorMessage}: ActorProps) {
                 <div className={styles.actorKnownFor}>
                     <span>Known For</span>
                     <div className={styles.actorMovies}>
-                        {data.knownFor.map(item => {
-                            return <Link href={`/movie/${item.id}`} key={item.id}>
-                                <div className={styles.actorMoviesCardContent}>
-                                    <Image src={item.image} alt={item.fullTitle} width={105} height={140} unoptimized/>
-                                    <div className={styles.actorMoviesTitleParent}>
-                                        <span className={styles.actorMoviesTitle}>{item.fullTitle}</span>
-                                        <span className={styles.actorMoviesRole}>{item.role}</span>
+                        {
+                            data.knownFor && data.knownFor.map(item => {
+                                return <Link href={`/movie/${item.id}`} key={item.id}>
+                                    <div className={styles.actorMoviesCardContent}>
+                                        <Image src={item.image} alt={item.fullTitle} width={105} height={140} unoptimized/>
+                                        <div className={styles.actorMoviesTitleParent}>
+                                            <span className={styles.actorMoviesTitle}>{item.fullTitle}</span>
+                                            <span className={styles.actorMoviesRole}>{item.role}</span>
+                                        </div>
                                     </div>
-                                </div>
-                            </Link>
-                        })}
+                                </Link>
+                            })
+                        }
                     </div>
                 </div>
                 <div className={styles.casts}>
@@ -76,7 +78,7 @@ export default function Actor({data, errorMessage}: ActorProps) {
                         </thead>
                         <tbody>
                         {
-                            data.castMovies.map((item, index) => {
+                            data.castMovies && data.castMovies.map((item, index) => {
                                 return <tr key={item.id + index}>
                                     <td>{item.title}</td>
                                     <td>{item.role}</td>

@@ -64,7 +64,7 @@ export default function Movie({data, errorMessage}: MovieProps) {
                     <p className={styles.plot}>{data.plot}</p>
                     <div className={styles.moviesActorList}>
                         {
-                            data.actorList.map((actor: any) => {
+                            data.actorList && data.actorList.map((actor: any) => {
                                 return <div className={styles.actorCard} key={actor.id}>
                                     <Link href={`/actor/${actor.id}`}>
                                         <div className={styles.actorImageWrapper}>
@@ -88,7 +88,7 @@ export default function Movie({data, errorMessage}: MovieProps) {
                     <div className={styles.similarMovies}>
                         <h3>More like this</h3>
                         <ul>
-                            {data.similar.map((movie: MovieObject) => {
+                            {data.similar && data.similar.map((movie: MovieObject) => {
                                 return <Link href={`/movie/${movie.id}`} key={movie.id}>
                                     <a>
                                         <li>{movie.title}({movie.imDbRating})</li>
